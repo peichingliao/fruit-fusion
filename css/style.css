@@ -1,0 +1,203 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #1a1a2e; color: #fff;
+  touch-action: none; user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ===== SCREENS ===== */
+.screen {
+  position: fixed; inset: 0;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.screen.active { display: flex; }
+
+.overlay {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+}
+
+/* ===== MENU SCREEN ===== */
+#menuScreen {
+  background: linear-gradient(155deg, #1a1a2e 0%, #16213e 55%, #0f3460 100%);
+}
+
+.menu-content {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 28px;
+  padding: 24px 20px; width: 100%; max-width: 420px;
+}
+
+.game-title { text-align: center; }
+
+.title-emoji {
+  font-size: 68px; line-height: 1; margin-bottom: 10px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
+}
+
+.game-title h1 {
+  font-size: 38px; font-weight: 900; letter-spacing: -1px;
+  background: linear-gradient(135deg, #f9ca24, #f0932b);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle { color: rgba(255,255,255,0.5); margin-top: 6px; font-size: 14px; }
+
+.difficulty-section h2 {
+  text-align: center; font-size: 16px;
+  color: rgba(255,255,255,0.6); margin-bottom: 14px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+
+.difficulty-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; width: 100%;
+}
+
+.diff-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 18px; padding: 18px 12px;
+  cursor: pointer; transition: transform 0.15s, background 0.2s;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 5px; color: white;
+}
+.diff-btn:active { transform: scale(0.94); }
+.diff-btn.easy   { border-color: rgba(100, 220, 100, 0.4); }
+.diff-btn.easy:hover   { background: rgba(100, 220, 100, 0.12); }
+.diff-btn.medium { border-color: rgba(255, 213, 0, 0.4); }
+.diff-btn.medium:hover { background: rgba(255, 213, 0, 0.12); }
+.diff-btn.hard   { border-color: rgba(255, 140, 0, 0.4); }
+.diff-btn.hard:hover   { background: rgba(255, 140, 0, 0.12); }
+.diff-btn.expert { border-color: rgba(255, 60, 60, 0.4); }
+.diff-btn.expert:hover { background: rgba(255, 60, 60, 0.12); }
+
+.diff-emoji { font-size: 34px; line-height: 1; }
+.diff-name  { font-size: 18px; font-weight: 700; }
+.diff-desc  { font-size: 11px; color: rgba(255,255,255,0.45); text-align: center; }
+
+/* ===== GAME SCREEN ===== */
+#gameScreen {
+  background: #111827;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#gameHeader {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; max-width: 420px;
+  padding: 10px 18px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+.header-item {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1px; min-width: 72px;
+}
+.header-item.target { min-width: 110px; }
+
+.header-label {
+  font-size: 10px; color: rgba(255,255,255,0.4);
+  text-transform: uppercase; letter-spacing: 0.8px;
+}
+.header-value { font-size: 17px; font-weight: 700; }
+
+#gameCanvas {
+  display: block; cursor: crosshair;
+  touch-action: none; flex-shrink: 0;
+}
+
+#gameFooter {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; max-width: 420px;
+  padding: 8px 18px;
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+#nextFruitInfo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: rgba(255,255,255,0.75);
+}
+#nextFruitEmoji { font-size: 26px; }
+#nextFruitName  { font-weight: 600; }
+
+.game-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 10px; color: white;
+  padding: 8px 18px; font-size: 14px;
+  cursor: pointer; transition: background 0.2s;
+}
+.game-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ===== FRUIT PROGRESS BAR ===== */
+#progressBar {
+  display: flex; align-items: center; gap: 4px;
+  width: 100%; max-width: 420px;
+  padding: 6px 18px;
+  background: rgba(0,0,0,0.2);
+  overflow-x: auto; scrollbar-width: none;
+  flex-shrink: 0;
+}
+#progressBar::-webkit-scrollbar { display: none; }
+
+.progress-fruit {
+  font-size: 14px; opacity: 0.3;
+  transition: opacity 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+.progress-fruit.achieved  { opacity: 1; }
+.progress-fruit.target    { opacity: 1; transform: scale(1.3); filter: drop-shadow(0 0 6px gold); }
+
+/* ===== POPUP ===== */
+.popup {
+  background: #1e293b;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 26px; padding: 32px 26px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 14px;
+  width: 300px; max-width: 90vw;
+}
+.popup h2 { font-size: 24px; font-weight: 800; }
+.popup p  { color: rgba(255,255,255,0.65); text-align: center; font-size: 14px; }
+
+.popup-btn {
+  width: 100%; padding: 14px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  color: white; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all 0.18s;
+}
+.popup-btn:hover  { background: rgba(255,255,255,0.15); }
+.popup-btn:active { transform: scale(0.96); }
+.popup-btn.primary {
+  background: linear-gradient(135deg, #f9ca24, #f0932b);
+  border-color: transparent; color: #1a1a2e;
+}
+
+.result-emoji { font-size: 60px; }
+#resultScore  { font-size: 22px; font-weight: 700; color: #f9ca24; }
+
+/* ===== MERGE ANIMATION ===== */
+@keyframes mergeFlash {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 0.8; transform: scale(1.4); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+.merge-particle {
+  position: absolute; pointer-events: none;
+  animation: mergeFlash 0.4s ease-out forwards;
+}

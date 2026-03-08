@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>水果融合 - Fruit Fusion</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== 選單畫面 ===== -->
+  <div id="menuScreen" class="screen active">
+    <div class="menu-content">
+      <div class="game-title">
+        <div class="title-emoji">🍉</div>
+        <h1>水果融合</h1>
+        <p class="subtitle">融合水果，挑戰極限！</p>
+      </div>
+
+      <div class="difficulty-section">
+        <h2>選擇難度</h2>
+        <div class="difficulty-grid">
+          <button class="diff-btn easy" data-difficulty="easy">
+            <span class="diff-emoji">🫐</span>
+            <span class="diff-name">簡單</span>
+            <span class="diff-desc">目標：荔枝</span>
+          </button>
+          <button class="diff-btn medium" data-difficulty="medium">
+            <span class="diff-emoji">🍋</span>
+            <span class="diff-name">中等</span>
+            <span class="diff-desc">目標：檸檬</span>
+          </button>
+          <button class="diff-btn hard" data-difficulty="hard">
+            <span class="diff-emoji">🍌</span>
+            <span class="diff-name">困難</span>
+            <span class="diff-desc">目標：香蕉</span>
+          </button>
+          <button class="diff-btn expert" data-difficulty="expert">
+            <span class="diff-emoji">🍉</span>
+            <span class="diff-name">專家</span>
+            <span class="diff-desc">目標：西瓜</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 遊戲畫面 ===== -->
+  <div id="gameScreen" class="screen">
+    <div id="gameHeader">
+      <div class="header-item">
+        <span class="header-label">時間</span>
+        <span id="timerDisplay" class="header-value">03:00</span>
+      </div>
+      <div class="header-item target">
+        <span class="header-label">目標</span>
+        <span id="targetDisplay" class="header-value">❤️ 荔枝</span>
+      </div>
+      <div class="header-item">
+        <span class="header-label">得分</span>
+        <span id="scoreDisplay" class="header-value">0</span>
+      </div>
+    </div>
+
+    <div id="progressBar"></div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="gameFooter">
+      <div id="nextFruitInfo">
+        <span>下一個：</span>
+        <span id="nextFruitEmoji">🫐</span>
+        <span id="nextFruitName">藍莓</span>
+      </div>
+      <button id="pauseBtn" class="game-btn">暫停</button>
+    </div>
+  </div>
+
+  <!-- ===== 暫停覆蓋層 ===== -->
+  <div id="pauseScreen" class="screen overlay">
+    <div class="popup">
+      <h2>⏸ 遊戲暫停</h2>
+      <button id="resumeBtn" class="popup-btn primary">繼續遊戲</button>
+      <button id="restartBtn" class="popup-btn">重新開始</button>
+      <button id="menuFromPauseBtn" class="popup-btn">返回選單</button>
+    </div>
+  </div>
+
+  <!-- ===== 結果覆蓋層 ===== -->
+  <div id="resultScreen" class="screen overlay">
+    <div class="popup">
+      <div id="resultEmoji" class="result-emoji">🎉</div>
+      <h2 id="resultTitle">恭喜過關！</h2>
+      <p id="resultMessage">你完成了簡單難度！</p>
+      <p id="resultScore">得分：0</p>
+      <button id="playAgainBtn" class="popup-btn primary">再玩一次</button>
+      <button id="menuFromResultBtn" class="popup-btn">返回選單</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/fruits.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
