@@ -180,13 +180,7 @@ function processMerges() {
 
 // ─── Overflow check ───────────────────────────────────────────────────────────
 function checkOverflow(delta) {
-  const overflowing = fruits.some(({ body }) => body.position.y < DANGER_Y);
-  if (overflowing) {
-    overflowTimer += delta;
-    if (overflowTimer >= OVERFLOW_LIMIT) endGame(false);
-  } else {
-    overflowTimer = 0;
-  }
+  // 溢出判定已關閉，僅保留視覺警示（紅色虛線）
 }
 
 // ─── Game loop ────────────────────────────────────────────────────────────────
